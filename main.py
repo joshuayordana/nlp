@@ -1,5 +1,5 @@
 import streamlit as st
-pip install speech_recognition
+pip install SpeechRecognition
 import speech_recognition as sr
 import os
 import soundfile as sf
