@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-import soundfile as sf
+from pydub import AudioSegment, silence
 
 st.write("""
 # Halo
