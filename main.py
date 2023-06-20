@@ -46,21 +46,28 @@ def pred(text):
     st.write("**SGD :** ", hasil)
 
 #Load UI
-st.write("""
-# Speech Recognition
-""")
+st.markdown("""
+# <h1 style="text-align: center;">Speech Recognition</h1>
+""", unsafe_allow_html=True)
 
 source = st.selectbox(
-        'Choose source',
+        'First, choose your source',
         ('Choose', 'Text', 'Audio File'))
+st.write("#")
 if source == "Text":
+    st.markdown("""
+    # <h3 style="text-align: center;">Input your text</h3>
+    """, unsafe_allow_html=True)
     input=""
-    text = st.text_input('Input Text')
+    text = st.text_input("")
     predict = st.button("Predict")
     if predict:
         pred(text)
 elif source == "Audio File":
-    uploded_file = st.file_uploader("Choose a file")
+    st.markdown("""
+    # <h3 style="text-align: center;">Upload your audio file</h3>
+    """, unsafe_allow_html=True)
+    uploded_file = st.file_uploader("")
     if uploded_file is not None:
         sr.AudioFile(uploded_file)
         r = sr.Recognizer()
@@ -68,17 +75,23 @@ elif source == "Audio File":
         with sr.AudioFile(uploded_file.name) as source:
             AudioData = r.record(source)
             option = st.selectbox(
-            'Choose method',
-            ('Choose', 'Google', 'Sphinx'))
+            '',
+            ('Choose a method', 'Google', 'Sphinx'))
             if option == "Google":
                 googleResult = r.recognize_google(AudioData)
-                label = "Result with Google Recognizer"
+                st.markdown("""
+                # <h3 style="text-align: center;">Result with Google Recognizer</h3>
+                """, unsafe_allow_html=True)
                 input = googleResult
             elif option == "Sphinx":
                 sphinxResult = r.recognize_sphinx(AudioData)
-                label = "Result with Sphinx Recognizer"
+                st.markdown("""
+                # <h3 style="text-align: center;">Result with Sphinx Recognizer</h3>
+                """, unsafe_allow_html=True)
                 input = sphinxResult
-            text = st.text_input(label, input)
-            predict = st.button("Predict")
-            if predict:
-                pred(text)
+
+            if option != "Choose a method":
+                text = st.text_input("", input)
+                predict = st.button("Predict")
+                if predict:
+                    pred(text)
