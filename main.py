@@ -47,7 +47,7 @@ def pred(text):
 
 #Load UI
 st.markdown("""
-# <h1 style="text-align: center;">Speech Recognition</h1>
+# <h1 style="text-align: center;">Sentiment Analysis</h1>
 """, unsafe_allow_html=True)
 
 source = st.selectbox(
